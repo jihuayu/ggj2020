@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
     private static GameManager _gm;
     public static GameManager GM => _gm;
     public float hp = 100;
+    public static Vector2 right = new Vector2(0,10);
+    public static Vector2 left = new Vector2(-10,-10);
 
     private void Awake () {
         _gm = this;

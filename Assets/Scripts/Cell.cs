@@ -35,8 +35,27 @@ public class Cell : MonoBehaviour
         else
         {
             var d = (cell.transform.position - transform.position);
-            
-            transform.Translate(speed * Time.deltaTime * ((d.x*d.x+d.y*d.y)*new Vector3((float)Math.Cos(Random.Range(0,100)),(float)Math.Sin(Random.Range(0,100)),0)+d).normalized);
+            var move = transform.position + speed * Time.deltaTime *
+                       ((d.x * d.x + d.y * d.y) * new Vector3((float) Math.Cos(Random.Range(0, 100)),
+                            (float) Math.Sin(Random.Range(0, 100)), 0) + d).normalized;
+            if (move.x < GameManager.left.x)
+            {
+                move.x = GameManager.left.x;
+            }
+
+            if ( move.x>GameManager.right.x)
+            {
+                move.x = GameManager.right.x;
+            }
+            if ( move.y<GameManager.left.y)
+            {
+                move.y = GameManager.left.y;
+            }          
+            if ( move.y>GameManager.right.y)
+            {
+                move.y = GameManager.right.y;
+            }
+            transform.position = move;
         }
     }
 
