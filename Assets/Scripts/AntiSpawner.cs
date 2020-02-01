@@ -1,19 +1,13 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 
 public class AntiSpawner : MonoBehaviour 
 {
-    private static AntiSpawner _antiSpawner;
-    public static AntiSpawner AS => _antiSpawner;
-    
-    private void Awake () {
-        _antiSpawner = this;
-    }
-    
-    public float glycoprotein = 10;
-    public float aminoAcid = 20;
+    public float glycoprotein = 20;
+    public float aminoAcid = 50;
     public float glycoproteinProduceRate = 10;
     public float aminoAcidProduceRate = 20;
     public GameObject[] antis;
@@ -35,7 +29,10 @@ public class AntiSpawner : MonoBehaviour
         var anti = cell.GetComponent<Anti>();
         if (glycoprotein >= anti.glycoproteinCost && aminoAcid >= anti.aminoAcidCost)
         {
-            Instantiate(cell);
+            var o = Instantiate(cell);
+            o.GetComponent<Transform>().position = gameObject.GetComponent<Transform>().position;
+            o.GetComponent<Transform>().position +=new Vector3((float)Math.Cos(Random.Range(0,100))*0.5f,(float)Math.Sin(Random.Range(0,100))*0.5f,0);
+            
             currentIndex++;
             glycoprotein -= anti.glycoproteinCost;
             aminoAcid -= anti.aminoAcidCost;

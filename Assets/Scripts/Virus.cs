@@ -27,6 +27,8 @@ public class Virus : Cell
         {            
             _remainTime = copyRate;
             Instantiate(gameObject);
+            Debug.Log("copy");
+
         }
     }
     
@@ -37,6 +39,8 @@ public class Virus : Cell
             AntiSpawner.AS.glycoprotein += glycoproteinProduce;
             AntiSpawner.AS.aminoAcid += aminoAcidProduce;
             Destroy(gameObject);
+            Debug.Log("die");
+
         }
     }
 }

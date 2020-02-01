@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 public class Cell : MonoBehaviour
 {
     public float health = 100;
-    public float speed = 5;
+    public float speed = 1;
     public float attack = 10;
     public float defense = 3;
-    public float attackRange = 2;
+    public float attackRange = 0.5f;
+    public float backRange = 0.02f;
     public float damage = 0.1f;
 
     protected void CheckHealth()
@@ -27,10 +29,13 @@ public class Cell : MonoBehaviour
         if (dis < attackRange)
         {
             cell.health = cell.health - attack * Time.deltaTime + cell.defense * Time.deltaTime;
+            obj.GetComponent<Transform>().position+=new Vector3((float)Math.Cos(Random.Range(0,100))*backRange,(float)Math.Sin(Random.Range(0,100))*backRange,0);
         }
         else
         {
-            transform.Translate(speed * Time.deltaTime * (cell.transform.position - transform.position).normalized);
+            var d = (cell.transform.position - transform.position);
+            
+            transform.Translate(speed * Time.deltaTime * ((d.x*d.x+d.y*d.y)*new Vector3((float)Math.Cos(Random.Range(0,100)),(float)Math.Sin(Random.Range(0,100)),0)+d).normalized);
         }
     }
 
