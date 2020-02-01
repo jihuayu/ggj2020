@@ -12,7 +12,12 @@ public class AntiSpawner : MonoBehaviour
     public float aminoAcidProduceRate = 20;
     public GameObject[] antis;
     public int currentIndex = 0;
+    private static AntiSpawner _antiSpawner;
+    public static AntiSpawner AS => _antiSpawner;
 
+    private void Awake () {
+        _antiSpawner = this;
+    }
     private void Update()
     {
         glycoprotein += glycoproteinProduceRate * Time.deltaTime;
