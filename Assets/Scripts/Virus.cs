@@ -34,10 +34,8 @@ public class Virus : Cell
     {
         if (health < 0)
         {
-            var antiManager = GameObject.FindGameObjectWithTag("AntiManager");
-            var antiSpawner = antiManager.GetComponent<AntiSpawner>();
-            antiSpawner.glycoprotein += glycoproteinProduce;
-            antiSpawner.aminoAcid += aminoAcidProduce;
+            AntiSpawner.AS.glycoprotein += glycoproteinProduce;
+            AntiSpawner.AS.aminoAcid += aminoAcidProduce;
             Destroy(gameObject);
         }
     }

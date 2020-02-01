@@ -8,7 +8,13 @@ public class Cell : MonoBehaviour
     public float attack = 10;
     public float defense = 3;
     public float attackRange = 2;
+    public float damage = 0.1f;
 
+    protected void CheckHealth()
+    {
+        GameManager.GM.hp -= damage;
+    }
+    
     protected void AttackOrMove(string cellType)
     {
         var obj = FindNearestCell(cellType);

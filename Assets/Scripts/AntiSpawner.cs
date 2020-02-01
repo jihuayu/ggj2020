@@ -5,6 +5,13 @@ using UnityEngine.Serialization;
 
 public class AntiSpawner : MonoBehaviour 
 {
+    private static AntiSpawner _antiSpawner;
+    public static AntiSpawner AS => _antiSpawner;
+    
+    private void Awake () {
+        _antiSpawner = this;
+    }
+    
     public float glycoprotein = 10;
     public float aminoAcid = 20;
     public float glycoproteinProduceRate = 10;
