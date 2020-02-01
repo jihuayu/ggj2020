@@ -5,17 +5,17 @@ using UnityEngine.Serialization;
 
 public class AntiSpawner : MonoBehaviour 
 {
-    public int glycoprotein = 10;
-    public int aminoAcid = 20;
-    public int glycoproteinProduceRate = 10;
-    public int aminoAcidProduceRate = 20;
+    public float glycoprotein = 10;
+    public float aminoAcid = 20;
+    public float glycoproteinProduceRate = 10;
+    public float aminoAcidProduceRate = 20;
     public GameObject[] antis;
     public int currentIndex = 0;
 
     private void Update()
     {
-        glycoprotein += glycoproteinProduceRate;
-        aminoAcid += aminoAcidProduceRate;
+        glycoprotein += glycoproteinProduceRate * Time.deltaTime;
+        aminoAcid += aminoAcidProduceRate * Time.deltaTime;
         if (antis.Length == 0)
         {
             return;
@@ -29,6 +29,7 @@ public class AntiSpawner : MonoBehaviour
         if (glycoprotein >= anti.glycoproteinCost && aminoAcid >= anti.aminoAcidCost)
         {
             Instantiate(cell);
+            currentIndex++;
             glycoprotein -= anti.glycoproteinCost;
             aminoAcid -= anti.aminoAcidCost;
         }

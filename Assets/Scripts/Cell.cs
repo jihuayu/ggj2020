@@ -1,23 +1,26 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class Cell : MonoBehaviour
 {
-    public int health = 100;
-    public int speed = 5;
-    public int attack = 10;
-    public int defense = 3;
-    public int attackRange = 2;
+    public float health = 100;
+    public float speed = 5;
+    public float attack = 10;
+    public float defense = 3;
+    public float attackRange = 2;
 
     protected void AttackOrMove(string cellType)
     {
         var obj = FindNearestCell(cellType);
+        if (obj == null)
+        {
+            return;
+        }
         float dis = Vector3.Distance(obj.transform.position, transform.position);
         var cell = obj.GetComponent<Cell>();
         if (dis < attackRange)
         {
-            cell.health = cell.health - attack + cell.defense;
+            cell.health = cell.health - attack * Time.deltaTime + cell.defense * Time.deltaTime;
         }
         else
         {
@@ -25,9 +28,12 @@ public class Cell : MonoBehaviour
         }
     }
 
-    GameObject FindNearestCell(string cellType)
-    {
+    GameObject FindNearestCell(string cellType)        
+    {        
         var targetArr = GameObject.FindGameObjectsWithTag(cellType);
+        if (targetArr.Length == 0){
+            return null;
+        }
         var distance = 999999999.0;
         var index = 0;
         for(var i = 0;i < targetArr.Length;++i)

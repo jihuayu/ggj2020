@@ -1,10 +1,7 @@
-﻿using System;
-using UnityEngine;
-
-public class Anti : Cell
+﻿public class Anti : Cell
 {
-    public int glycoproteinCost = 10;
-    public int aminoAcidCost = 20;
+    public float glycoproteinCost = 10;
+    public float aminoAcidCost = 20;
 
     private void Update()
     {

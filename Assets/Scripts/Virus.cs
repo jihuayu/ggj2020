@@ -1,15 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 public class Virus : Cell
 {
-    public int copyRate = 5;
+    public float copyRate = 5;
     private float _remainTime;
-    public int glycoproteinProduce = 10;
-    public int aminoAcidProduce = 20;
+    public float glycoproteinProduce = 10;
+    public float aminoAcidProduce = 20;
     // Start is called before the first frame update
     void Start()
     {
