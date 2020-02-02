@@ -42,7 +42,6 @@ public class Cell : MonoBehaviour
             {
                 move.x = GameManager.left.x;
             }
-
             if ( move.x>GameManager.right.x)
             {
                 move.x = GameManager.right.x;

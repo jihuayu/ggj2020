@@ -13,21 +13,15 @@ public class SkillManager : MonoBehaviour
         {
             var o = skills[i];
             {
-                if (o.active)
+                if (o.CoolDownTimeRemain==0)
                 {
-                    if (Math.Floor(o.CoolDownTimeRemain) != Math.Floor(o.CoolDownTimeRemain -= Time.deltaTime))
-                    {
-                        o.Start();
-                        Debug.Log(111);
-                    }
-
-                    o.CoolDownTimeRemain -= Time.deltaTime;
+                    continue;
+                }
+                o.CoolDownTimeRemain -= Time.deltaTime;
                     if (o.CoolDownTimeRemain < 0)
                     {
-                        o.CoolDownTimeRemain = o.CoolDownTime;
-                        o.active = false;
+                        o.CoolDownTimeRemain = 0;
                     }
-                }
             }
         }
     }
@@ -44,10 +38,10 @@ public class SkillManager : MonoBehaviour
             {
                 foreach (var sk in skills)
                 {
-                    if (sk.Name == "CoolDown")
+                    if (sk.Name == "CoolDown"&&sk.CoolDownTimeRemain<=0)
                     {
-                        sk.active = true;
                         sk.CoolDownTimeRemain = sk.CoolDownTime;
+                        sk.Start();
                     }
                 }
             }
@@ -56,9 +50,9 @@ public class SkillManager : MonoBehaviour
             {
                 foreach (var sk in skills)
                 {
-                    if (sk.Name == "RadiationTherapy")
+                    if (sk.Name == "RadiationTherapy"&&sk.CoolDownTimeRemain<=0)
                     {
-                        sk.active = true;
+                        sk.Start();
                         sk.CoolDownTimeRemain = sk.CoolDownTime;
 
                     }
@@ -69,9 +63,9 @@ public class SkillManager : MonoBehaviour
             {
                 foreach (var sk in skills)
                 {
-                    if (sk.Name == "Antibiotics")
+                    if (sk.Name == "Antibiotics"&&sk.CoolDownTimeRemain<=0)
                     {
-                        sk.active = true;
+                        sk.Start();
                         sk.CoolDownTimeRemain = sk.CoolDownTime;
 
                     }
