@@ -6,6 +6,8 @@ namespace Skill
     {
         public string Name => "Antibiotics";
         public float CoolDownTime => 50;
+        public bool active { get; set; }
+
         public float CoolDownTimeRemain { get; set; }
         private const float Damage = 10;
         public void Start()

@@ -10,6 +10,7 @@ namespace Skill
         private const float VirusDamage = 20;
         private const float AntiDamage = 20;
         private const float Damage = 10;
+        public bool active { get; set; }
 
         public void Start()
         {
